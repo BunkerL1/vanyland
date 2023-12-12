@@ -20,18 +20,23 @@
 </form>
 
 <script>
+    // Função para ofuscar (inverter) um valor
     function obfuscar(valor) {
         return valor.split('').reverse().join('');
     }
 
+    // Função para enviar e-mail
     function enviarEmail() {
+        // Obtenha os valores do formulário
         const name = document.getElementById('name').value;
         const message = document.getElementById('message').value;
 
-        const username = '42976beec9d5fc'; // Não ofusque o username para fins de claridade
-        const password = '5c4aad7bb1f461'; // Não ofusque a senha para fins de claridade
+        // Credenciais (não ofusque para fins de claridade)
+        const username = '42976beec9d5fc';
+        const password = '5c4aad7bb1f461';
 
-        Email.send({
+        // Configurações do e-mail
+        const emailConfig = {
             Host: "smtp.mailtrap.io",
             Username: username,
             Password: password,
@@ -40,8 +45,19 @@
             Subject: "Nova mensagem do formulário de contato",
             Body: `Nome: ${name}\n\nMensagem: ${message}`,
             SecureToken: "" // Não é necessário incluir SecureToken para o Mailtrap
-        }).then(
-            message => alert("E-mail enviado com sucesso!")
+        };
+
+        // Enviar e-mail usando a biblioteca SMTPJS
+        Email.send(emailConfig).then(
+            message => {
+                alert("E-mail enviado com sucesso!");
+                // Limpar o formulário ou realizar outras ações após o envio bem-sucedido
+            },
+            error => {
+                console.error("Erro ao enviar e-mail:", error);
+                alert("Erro ao enviar e-mail. Consulte o console para detalhes.");
+                // Lidar com o erro, se necessário
+            }
         );
     }
 </script>
