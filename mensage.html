@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mensagem</title>
+    <!-- Inclua a biblioteca SMTPJS -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
 
@@ -17,7 +19,6 @@
     <button type="button" onclick="enviarEmail()">Enviar</button>
 </form>
 
-<!-- Inclua a biblioteca SMTPJS -->
 <script>
     function obfuscar(valor) {
         return valor.split('').reverse().join('');
@@ -27,17 +28,18 @@
         const name = document.getElementById('name').value;
         const message = document.getElementById('message').value;
 
-        const username = obfuscar('42976beec9d5fc');
-        const password = obfuscar('5c4aad7bb1f461');
+        const username = '42976beec9d5fc'; // Não ofusque o username para fins de claridade
+        const password = '5c4aad7bb1f461'; // Não ofusque a senha para fins de claridade
 
         Email.send({
             Host: "smtp.mailtrap.io",
             Username: username,
             Password: password,
             To: 'marcolopes1928@gmail.com',
-            From: "seu-email@gmail.com",
+            From: "from@example.com",
             Subject: "Nova mensagem do formulário de contato",
-            Body: `Nome: ${name}\n\nMensagem: ${message}`
+            Body: `Nome: ${name}\n\nMensagem: ${message}`,
+            SecureToken: "" // Não é necessário incluir SecureToken para o Mailtrap
         }).then(
             message => alert("E-mail enviado com sucesso!")
         );
