@@ -1,0 +1,54 @@
+/* Theme Switcher Styles */
+.theme-switcher-button {
+  position: fixed;
+  top: calc(50% - 3.6rem);
+  right: 0;
+  z-index: 2;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  cursor: pointer;
+  transition: right 0.3s ease-in-out;
+}
+
+.theme-switcher-button:hover {
+  right: 0.5rem;
+}
+
+.theme-switcher-button i {
+  color: #fff;
+}
+
+.theme-switcher {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 250px;
+  height: 100%;
+  background: #fff;
+  padding: 20px;
+  box-shadow: -10px 0px 30px rgba(0, 0, 0, 0.1);
+  transition: right 0.3s ease-in-out;
+}
+
+.theme-switcher.show {
+  right: 0;
+}
+
+.theme-switcher .theme-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.theme-switcher .theme-option label {
+  font-size: 14px;
+}
+
+.theme-switcher .theme-option input {
+  margin-right: 10px;
+}
+
+/* Rest of the Theme Switcher Styles... */
