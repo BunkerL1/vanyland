@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem</title>
+</head>
+<body>
+
+<form id="emailForm">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" name="name" maxlength="200" required>
+
+    <label for="message">Mensagem:</label>
+    <textarea id="message" name="message" maxlength="200" required></textarea>
+
+    <button type="button" onclick="enviarEmail()">Enviar</button>
+</form>
+
+<!-- Inclua a biblioteca SMTPJS -->
+<script>
+    function obfuscar(valor) {
+        return valor.split('').reverse().join('');
+    }
+
+    function enviarEmail() {
+        const name = document.getElementById('name').value;
+        const message = document.getElementById('message').value;
+
+        const username = obfuscar('42976beec9d5fc');
+        const password = obfuscar('5c4aad7bb1f461');
+
+        Email.send({
+            Host: "smtp.mailtrap.io",
+            Username: username,
+            Password: password,
+            To: 'marcolopes1928@gmail.com',
+            From: "seu-email@gmail.com",
+            Subject: "Nova mensagem do formulário de contato",
+            Body: `Nome: ${name}\n\nMensagem: ${message}`
+        }).then(
+            message => alert("E-mail enviado com sucesso!")
+        );
+    }
+</script>
+
+</body>
+</html>
